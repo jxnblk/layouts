@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "page-layout",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Brent Jackson",
+  "license": "MIT",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@jxnblk/react-live": "^2.1.2-2",
+    "@mdx-js/mdx": "^1.2.2",
+    "@theme-ui/preset-base": "^0.2.29",
+    "@theme-ui/prism": "^0.2.29",
+    "deepmerge": "^4.0.0",
+    "gatsby": "^2.13.56",
+    "gatsby-plugin-mdx": "^1.0.23",
+    "gatsby-plugin-theme-ui": "^0.2.29",
+    "indent-string": "^4.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-live": "^2.1.2",
+    "rebass": "^4.0.2",
+    "stringify-object": "^3.3.0",
+    "theme-ui": "^0.2.31"
+  }
+}
