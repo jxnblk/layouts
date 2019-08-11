@@ -75,6 +75,14 @@ export const Editor = props => {
     copy(formatCode(code, mode))
   }
 
+  if (mode === 'css-modules') {
+    return (
+      <Styled.pre>
+        {code}
+      </Styled.pre>
+    )
+  }
+
   return (
     <Box mx={-3}>
       <LiveProvider

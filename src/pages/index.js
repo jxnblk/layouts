@@ -9,6 +9,7 @@ import TilesByWidth from '../examples/tiles-by-width'
 import TilesByColumns from '../examples/tiles-by-columns'
 import Container from '../examples/container'
 import Stack from '../examples/stack'
+import BottomFooter from '../examples/bottom-footer'
 
 const Grid = ({
   width = 320,
@@ -111,6 +112,11 @@ export default props => {
           title='Stack'
           component={Stack}
           href='/stack'
+        />
+        <Card
+          title='Bottom Footer'
+          component={BottomFooter}
+          href='/bottom-footer'
         />
       </Grid>
     </div>

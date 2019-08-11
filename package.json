@@ -34,6 +34,7 @@
     "react-live": "^2.1.2",
     "rebass": "^4.0.2",
     "stringify-object": "^3.3.0",
+    "style-object-to-css-string": "^1.0.1",
     "theme-ui": "^0.2.31"
   }
 }

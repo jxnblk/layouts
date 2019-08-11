@@ -3,10 +3,12 @@ import { jsx, Flex, Box } from '../code'
 
 export default props => (
   <Flex
+    name='root'
     sx={{
       flexWrap: 'wrap',
     }}>
     <Box
+      name='sidebar'
       sx={{
         p: 3,
         flexGrow: 1,
@@ -15,6 +17,7 @@ export default props => (
       Sidebar
     </Box>
     <Box
+      name='main'
       sx={{
         p: 3,
         flexGrow: 99999,

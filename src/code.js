@@ -14,6 +14,8 @@ import {
 import { Box, Flex } from 'rebass'
 import { useContext } from './context'
 
+import toCSS from 'style-object-to-css-string'
+
 Box.displayName = 'Box'
 Flex.displayName = 'Flex'
 
@@ -42,13 +44,50 @@ const elements = {
     Flex: 'div',
     Box: 'div',
   },
+  'css-modules': {},
 }
 
-const theme = {
-  colors: {
-    primary: '#07c',
-    secondary: '#07c',
+const theme = {}
+
+const numberProperties = {
+  lineHeight: true,
+  fontWeight: true,
+  zIndex: true,
+  flexGrow: true,
+  flexShrink: true,
+}
+const numberToPixels = obj => {
+  const next = {}
+  for (let key in obj) {
+    const value = obj[key]
+    if (typeof value !== 'number' || numberProperties[key] || value === 0) {
+      next[key] = value
+    } else {
+      next[key] = value + 'px'
+    }
   }
+  return next
+}
+
+const renderCSSModules = (type, props, children) => {
+  const styles = scss(props.sx)(theme)
+  const pixels = numberToPixels(styles)
+  const ruleset = toCSS(pixels)
+  const chx = React.Children.map(children, child => {
+    if (typeof child === 'string' && /^\./.test(child)) {
+      return child
+    }
+    return null
+  })
+  const rules = [
+    `.${props.name || 'root'} {`,
+    indent(ruleset, 2),
+    '}',
+    '',
+    ...chx
+  ].filter(Boolean).join('\n')
+
+  return rules
 }
 
 export const jsx = (type, props = {}, ...children) => {
@@ -56,6 +95,10 @@ export const jsx = (type, props = {}, ...children) => {
   const { depth = 0 } = props
   const name = type.displayName || type
   const tag = elements[mode][name]
+
+  if (mode === 'css-modules') {
+    return renderCSSModules(type, props, children)
+  }
 
   const styles = props.sx
   let sx, css
@@ -96,6 +139,7 @@ export const jsx = (type, props = {}, ...children) => {
       depth: depth + 1
     })
   })
+
 
   const lines = [
     `<${tag}` + (styleProps ? styleProps : '>'),

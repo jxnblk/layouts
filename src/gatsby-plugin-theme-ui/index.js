@@ -26,6 +26,10 @@ const theme = merge(preset, {
   fontWeights: {
     heading: 900,
   },
+  sizes: {
+    // hack to limit height in examples
+    '100vh': 256,
+  },
   prism,
   styles: {
     focused: {
