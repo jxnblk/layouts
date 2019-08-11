@@ -119,25 +119,28 @@ export const jsx = (type, props = {}, ...children) => {
     }
   }
 
+  let styleProps
+  if (sx) styleProps = indent(`\nsx={${sx}}>`, 2)
+  else if (css) styleProps = indent(`\ncss={${css}}>`, 2)
+
   const chx = React.Children.map(children, child => {
-    if (typeof child === 'string') return indent(child, 2 + depth * 2)
+    if (typeof child === 'string') {
+      return styleProps
+        ? indent(child, 2 + depth * 2)
+        : child
+    }
     return React.cloneElement(child, {
       depth: depth + 1
     })
   })
 
-  let styleProps = '>'
-  if (sx) styleProps = indent(`sx={${sx}}>`, 2)
-  else if (css) styleProps = indent(`css={${css}}`, 2)
-
   const lines = [
-    `<${tag}`,
-    styleProps,
+    `<${tag}` + (styleProps ? styleProps : '>'),
     ...chx,
     `</${tag}>`,
   ]
 
-  return indent(lines.join('\n'), depth * 2)
+  return indent(lines.join(styleProps ? '\n' : ''), depth * 2)
 }
 
 const scope = {
@@ -156,22 +159,27 @@ export const Editor = props => {
   }
 
   return (
-    <LiveProvider
-      scope={scope}
-      code={code}>
-      <Box
-        sx={{
-          '*': xray ? {
-            outline: `1px solid rgba(0, 255, 255, .5)`
-          } : {}
-        }}>
-        <LivePreview />
-      </Box>
-      <Styled.pre>
-        <LiveEditor />
-      </Styled.pre>
-      <LiveError />
-    </LiveProvider>
+    <Box mx={-3}>
+      <LiveProvider
+        scope={scope}
+        code={code}>
+        <Box
+          sx={{
+            p: 3,
+            '*': xray ? {
+              outline: t => `1px solid ${t.colors.outline}`,
+            } : {}
+          }}>
+          <LivePreview />
+        </Box>
+        <Styled.pre>
+          <LiveEditor
+            padding={0}
+          />
+        </Styled.pre>
+        <LiveError />
+      </LiveProvider>
+    </Box>
   )
 }
 
@@ -187,6 +195,7 @@ export const Preview = props => {
       code={code}>
       <Box
         sx={{
+          zoom: props.zoom,
           '*': xray ? {
             outline: t => `1px solid ${t.colors.outline}`
           } : {}

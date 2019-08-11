@@ -3,6 +3,7 @@ import { jsx } from 'theme-ui'
 import React from 'react'
 import { Link } from 'gatsby'
 import Sidebar from '../examples/sidebar'
+import TilesByWidth from '../examples/tiles-by-width'
 import { Preview } from '../code'
 
 const Grid = ({
@@ -28,17 +29,23 @@ const Card = ({
     {...props}
     to={href}
     sx={{
-      display: 'block',
+      display: 'flex',
+      flexDirection: 'column',
       color: 'inherit',
       textDecoration: 'none',
-      p: 3,
-      border: t => `1px solid ${t.colors.muted}`,
+      px: 3,
+      pt: 3,
+      border: t => `1px solid ${t.colors.outline}`,
       borderRadius: 4,
     }}>
-    <Preview component={component} />
+    <Preview
+      zoom={3/4}
+      component={component}
+    />
     <div
       sx={{
-        mt: 2,
+        mt: 'auto',
+        py: 2,
         fontWeight: 'bold',
       }}>
       {title}
@@ -49,17 +56,19 @@ const Card = ({
 export default props => {
   return (
     <div>
-      <pre>index</pre>
-      <Grid>
+      <Grid
+        sx={{
+          py: 4,
+        }}>
         <Card
           title='Sidebar'
           component={Sidebar}
           href='/sidebar'
         />
         <Card
-          title='Sidebar'
-          component={Sidebar}
-          href='/sidebar'
+          title='Tiles by Width'
+          component={TilesByWidth}
+          href='/tiles-by-width'
         />
       </Grid>
     </div>
