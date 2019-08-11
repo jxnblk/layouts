@@ -174,3 +174,25 @@ export const Editor = props => {
     </LiveProvider>
   )
 }
+
+export const Preview = props => {
+  const { xray } = useContext()
+  let code = typeof props.component === 'function'
+    ? props.component()
+    : props.code
+
+  return (
+    <LiveProvider
+      scope={scope}
+      code={code}>
+      <Box
+        sx={{
+          '*': xray ? {
+            outline: t => `1px solid ${t.colors.outline}`
+          } : {}
+        }}>
+        <LivePreview />
+      </Box>
+    </LiveProvider>
+  )
+}

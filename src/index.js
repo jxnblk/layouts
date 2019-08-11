@@ -1,35 +1,30 @@
 import React from 'react'
-import {
-  ThemeProvider,
-  ComponentProvider,
-  useThemeUI,
-  Box,
-} from './theme-ui'
-import theme from './theme'
+import { Styled, useThemeUI, } from 'theme-ui'
+import { CodeProvider, SwitchMode } from './code'
 
 const Layout = props => {
   const { colorMode, setColorMode, ...context } = useThemeUI()
+
   return (
-    <Box
-      sx={{
-        variant: 'styles.root',
-      }}>
-      <button
-        onClick={e => {
-          setColorMode(colorMode === 'dark' ? 'default' : 'dark')
-        }}>
-        {colorMode}
-      </button>
-      {props.children}
-    </Box>
+    <CodeProvider>
+      <Styled.root>
+        <header>
+          Layouts
+          <button
+            onClick={e => {
+              setColorMode(colorMode === 'dark' ? 'light' : 'dark')
+            }}>
+            {colorMode}
+          </button>
+          <SwitchMode />
+        </header>
+        {props.children}
+      </Styled.root>
+    </CodeProvider>
   )
 }
 
 export const wrapPageElement = ({ element, props }) =>
-  <ThemeProvider theme={theme}>
-    <ComponentProvider>
-      <Layout {...props}>
-        {element}
-      </Layout>
-    </ComponentProvider>
-  </ThemeProvider>
+  <Layout {...props}>
+    {element}
+  </Layout>
