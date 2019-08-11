@@ -1,8 +1,15 @@
 /** @jsx jsx */
 import { jsx, Styled, useThemeUI } from 'theme-ui'
+import { Fragment } from 'react'
 import { Link } from 'gatsby'
 import { Global } from '@emotion/core'
-import { CodeProvider, SwitchMode } from './code'
+import { Helmet } from 'react-helmet'
+import get from 'lodash.get'
+import { CodeProvider } from './context'
+import ModeSelector from './mode-selector'
+import ColorButton from './color-button'
+
+export { Editor, Preview } from './editor'
 
 const colorModes = [
   'lite',
@@ -23,6 +30,7 @@ const NavLink = ({ as: Tag = 'a', ...props }) =>
 
 const Layout = props => {
   const { colorMode, setColorMode, ...context } = useThemeUI()
+  let title = get(props, 'pageContext.frontmatter.title', 'Layouts')
 
   const cycleColorMode = e => {
     const i = colorModes.indexOf(colorMode)
@@ -42,6 +50,9 @@ const Layout = props => {
           }
         }}
       />
+      <Helmet htmlAttributes={{ lang: 'en-us' }}>
+        <title>{title}</title>
+      </Helmet>
       <Styled.root
         sx={{
           display: 'flex',
@@ -53,7 +64,6 @@ const Layout = props => {
             display: 'flex',
             alignItems: 'center',
             minHeight: 48,
-            bg: 'muted',
           }}>
           <Link to='/'
             sx={{
@@ -64,7 +74,7 @@ const Layout = props => {
             Layouts
           </Link>
           <div sx={{ mx: 'auto' }} />
-          <SwitchMode />
+          <ModeSelector />
           <div sx={{ mx: 2 }} />
           <ColorButton
             mode={colorMode}
@@ -97,59 +107,12 @@ const Layout = props => {
           <NavLink href='https://emotion.sh'>Emotion</NavLink>
           <div sx={{ mx: 'auto' }} />
           <NavLink href='https://jxnblk.com'>Made by Jxnblk</NavLink>
+          <div sx={{ fontSize: 0, mx: 3, my: 2 }}>© 2019 Brent Jackson</div>
         </footer>
       </Styled.root>
     </CodeProvider>
   )
 }
-
-const ColorButton = ({
-  mode,
-  ...props
-}) =>
-  <button
-    {...props}
-    title='Cycle Color Mode'
-    sx={{
-      display: 'inline-block',
-      appearance: 'none',
-      bg: 'transparent',
-      color: 'inherit',
-      p: 1,
-      m: 0,
-      border: 0,
-      borderRadius: 9999,
-      ':hover,:focus': {
-        color: 'primary',
-        boxShadow: '0 0 0 3px',
-        outline: 'none',
-      }
-    }}>
-    <svg
-      viewBox='0 0 32 32'
-      width='24'
-      height='24'
-      fill='currentcolor'
-      sx={{
-        display: 'block',
-      }}>
-      <circle
-        cx='16'
-        cy='16'
-        r='14'
-        fill='none'
-        stroke='currentcolor'
-        strokeWidth='4'
-      />
-      <path
-        d={`
-          M 16 0
-          A 16 16 0 0 0 16 32
-          z
-        `}
-      />
-    </svg>
-  </button>
 
 export const wrapPageElement = ({ element, props }) =>
   <Layout {...props}>

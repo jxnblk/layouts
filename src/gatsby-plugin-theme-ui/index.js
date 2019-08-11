@@ -17,9 +17,9 @@ const theme = merge(preset, {
         primary: 'cyan',
         secondary: 'yellow',
         accent: 'magenta',
-        muted: '#111119',
+        muted: '#111116',
         gray: '#999',
-        outline: 'rgba(0, 192, 255, 0.5)',
+        outline: 'rgba(0, 255, 255, 0.5)',
       },
     }
   },
@@ -28,21 +28,41 @@ const theme = merge(preset, {
   },
   prism,
   styles: {
+    focused: {
+      position: 'relative',
+      outline: 'none',
+      boxShadow: t => `0 0 0 3px ${t.colors.primary}`,
+    },
     navlink: {
       display: 'inline-block',
       color: 'inherit',
       textDecoration: 'none',
       fontWeight: 'bold',
+      ':focus': {
+        variant: 'styles.focused',
+      }
     },
     h1: {
       fontSize: [ 4, 5, 6, 7 ],
     },
+    p: {
+      maxWidth: 768,
+    },
     pre: {
       p: 3,
       mt: 0,
-      mb: 4,
+      mb: 0,
       variant: 'prism',
       bg: 'muted',
+      ':focus-within': {
+        boxShadow: t => `inset 0 0 0 2px ${t.colors.primary}`,
+      },
+      textarea: {
+        outline: 'none !important',
+        '::selection': {
+          bg: 'outline',
+        }
+      }
     }
   },
 })

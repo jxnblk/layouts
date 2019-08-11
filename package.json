@@ -9,7 +9,9 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "icon": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=Go&radius=999&size=32&fontSize=2&baseline=1' static/icon.png --width=32 --height=32 --scale-factor=1 ",
+    "card": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=Go&width=1024&height=512&fontSize=2&baseline=1' static/card.png --width=1024 --height=512"
   },
   "dependencies": {
     "@jxnblk/react-live": "^2.1.2-2",
@@ -17,13 +19,17 @@
     "@mdx-js/react": "^1.2.2",
     "@theme-ui/preset-base": "^0.2.29",
     "@theme-ui/prism": "^0.2.29",
+    "copy-to-clipboard": "^3.2.0",
     "deepmerge": "^4.0.0",
     "gatsby": "^2.13.56",
     "gatsby-plugin-mdx": "^1.0.23",
+    "gatsby-plugin-react-helmet": "^3.1.3",
     "gatsby-plugin-theme-ui": "^0.2.29",
     "indent-string": "^4.0.0",
+    "lodash.get": "^4.4.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
     "react-live": "^2.1.2",
     "rebass": "^4.0.2",
     "stringify-object": "^3.3.0",

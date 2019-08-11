@@ -12,59 +12,22 @@ import {
   LiveError,
 } from '@jxnblk/react-live'
 import { Box, Flex } from 'rebass'
+import { useContext } from './context'
 
 Box.displayName = 'Box'
 Flex.displayName = 'Flex'
 
-// todo: replace with custom components
 export { Box, Flex }
+
+export {
+  Context,
+  useContext,
+  CodeProvider,
+} from './context'
 
 const toString = obj => stringifyObject(obj, {
   indent: '  ',
 })
-
-export const Context = React.createContext({
-  mode: 'rebass',
-  modes: [
-    'rebass',
-    'theme-ui',
-    'emotion',
-  ],
-})
-
-export const useContext = () => React.useContext(Context)
-
-export const CodeProvider = props => {
-  const outer = useContext()
-  const [ mode, setMode ] = React.useState('rebass')
-  const [ xray, setXray ] = React.useState(true)
-  const context = {
-    ...outer,
-    mode,
-    setMode,
-    xray,
-    setXray,
-  }
-  return (
-    <Context.Provider value={context}>
-      {props.children}
-    </Context.Provider>
-  )
-}
-
-export const SwitchMode = props => {
-  const { mode, modes = [], setMode, } = useContext()
-  const cycle = e => {
-    const n = (modes.indexOf(mode) + 1) % modes.length
-    setMode(modes[n])
-  }
-
-  return (
-    <button onClick={cycle}>
-      {mode}
-    </button>
-  )
-}
 
 const elements = {
   rebass: {
@@ -89,7 +52,7 @@ const theme = {
 }
 
 export const jsx = (type, props = {}, ...children) => {
-  const { mode } = useContext(Context)
+  const { mode } = useContext()
   const { depth = 0 } = props
   const name = type.displayName || type
   const tag = elements[mode][name]
@@ -143,65 +106,3 @@ export const jsx = (type, props = {}, ...children) => {
   return indent(lines.join(styleProps ? '\n' : ''), depth * 2)
 }
 
-const scope = {
-  ...Rebass,
-  jsx: themeui.jsx,
-}
-
-export const Editor = props => {
-  const { mode, xray } = useContext()
-  let code = typeof props.component === 'function'
-    ? props.component()
-    : props.code
-
-  if (mode === 'theme-ui' || mode === 'emotion') {
-    code = '/** @jsx jsx */\n' + code
-  }
-
-  return (
-    <Box mx={-3}>
-      <LiveProvider
-        scope={scope}
-        code={code}>
-        <Box
-          sx={{
-            p: 3,
-            '*': xray ? {
-              outline: t => `1px solid ${t.colors.outline}`,
-            } : {}
-          }}>
-          <LivePreview />
-        </Box>
-        <Styled.pre>
-          <LiveEditor
-            padding={0}
-          />
-        </Styled.pre>
-        <LiveError />
-      </LiveProvider>
-    </Box>
-  )
-}
-
-export const Preview = props => {
-  const { xray } = useContext()
-  let code = typeof props.component === 'function'
-    ? props.component()
-    : props.code
-
-  return (
-    <LiveProvider
-      scope={scope}
-      code={code}>
-      <Box
-        sx={{
-          zoom: props.zoom,
-          '*': xray ? {
-            outline: t => `1px solid ${t.colors.outline}`
-          } : {}
-        }}>
-        <LivePreview />
-      </Box>
-    </LiveProvider>
-  )
-}
