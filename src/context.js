@@ -15,14 +15,17 @@ export const useContext = () => React.useContext(Context)
 export const CodeProvider = props => {
   const outer = useContext()
   const [ mode, setMode ] = React.useState('rebass')
-  const [ xray, setXray ] = React.useState(true)
+  const [ grid, setGrid ] = React.useState(true)
+  const toggleGrid = () => setGrid(!grid)
   const context = {
     ...outer,
     mode,
     setMode,
-    xray,
-    setXray,
+    grid,
+    setGrid,
+    toggleGrid,
   }
+
   return (
     <Context.Provider value={context}>
       {props.children}

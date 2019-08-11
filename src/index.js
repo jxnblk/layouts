@@ -68,7 +68,7 @@ const Layout = props => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          minHeight: '100vh',
+          minHeight: 'calc(100vh)',
         }}>
         <header
           sx={{

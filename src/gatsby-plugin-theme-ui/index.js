@@ -20,6 +20,7 @@ const theme = merge(preset, {
         muted: '#111116',
         gray: '#999',
         outline: 'rgba(0, 255, 255, 0.5)',
+        grid: 'rgba(0, 255, 255, 0.125)',
       },
     }
   },
@@ -67,7 +68,13 @@ const theme = merge(preset, {
           bg: 'outline',
         }
       }
-    }
+    },
+    inlineCode: {
+      fontFamily: 'monospace',
+    },
+    code: {
+      fontFamily: 'monospace',
+    },
   },
 })
 

@@ -20,6 +20,8 @@ Box.displayName = 'Box'
 Flex.displayName = 'Flex'
 
 export { Box, Flex }
+export const Card = props => <Box {...props} />
+Card.displayName = 'Card'
 
 export {
   Context,
@@ -35,14 +37,17 @@ const elements = {
   rebass: {
     Flex: 'Flex',
     Box: 'Box',
+    Card: 'Card',
   },
   'theme-ui': {
     Flex: 'div',
     Box: 'div',
+    Card: 'Card',
   },
   emotion: {
     Flex: 'div',
     Box: 'div',
+    Card: 'Card',
   },
   'css-modules': {},
 }

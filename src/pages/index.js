@@ -10,6 +10,7 @@ import TilesByColumns from '../examples/tiles-by-columns'
 import Container from '../examples/container'
 import Stack from '../examples/stack'
 import BottomFooter from '../examples/bottom-footer'
+import Masonry from '../examples/masonry'
 
 const Grid = ({
   width = 320,
@@ -86,7 +87,8 @@ export default props => {
       </Styled.p>
       <Grid
         sx={{
-          py: 4,
+          pt: 4,
+          pb: 5,
         }}>
         <Card
           title='Sidebar'
@@ -117,6 +119,11 @@ export default props => {
           title='Bottom Footer'
           component={BottomFooter}
           href='/bottom-footer'
+        />
+        <Card
+          title='Masonry'
+          component={Masonry}
+          href='/masonry'
         />
       </Grid>
     </div>

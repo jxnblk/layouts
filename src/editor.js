@@ -14,8 +14,22 @@ import copy from 'copy-to-clipboard'
 import indent from 'indent-string'
 import { useContext } from './context'
 
+// masonry layout card
+const Card = props => {
+  const span = Math.ceil(
+    (props.sx.height + 16) /
+    (32 + 16)
+  )
+  const gridRowEnd = `span ${span}`
+  return (
+    <Box {...props} sx={{ ...props.sx, gridRowEnd }} />
+  )
+}
+Card.displayName = 'Card'
+
 const scope = {
   ...Rebass,
+  Card,
   jsx,
 }
 
@@ -63,9 +77,14 @@ const transformCode = mode => src => {
   }
 }
 
+const gridStyles = {
+  backgroundSize: '8px 8px',
+  backgroundImage: t => `linear-gradient(0deg, transparent 7px, ${t.colors.grid} 7px),
+  linear-gradient(90deg, transparent 7px, ${t.colors.grid} 7px)`,
+}
 
 export const Editor = props => {
-  const { mode, xray } = useContext()
+  const { mode, grid } = useContext()
   let code = typeof props.component === 'function'
     ? props.component()
     : props.code
@@ -93,9 +112,10 @@ export const Editor = props => {
           sx={{
             fontWeight: 'bold',
             p: 3,
-            '*': xray ? {
+            ...gridStyles,
+            '*': {
               outline: t => `1px solid ${t.colors.outline}`,
-            } : {}
+            },
           }}>
           <LivePreview />
         </Box>
@@ -149,7 +169,7 @@ export const Editor = props => {
 }
 
 export const Preview = props => {
-  const { mode, xray } = useContext()
+  const { mode } = useContext()
   let code = typeof props.component === 'function'
     ? props.component()
     : props.code
@@ -163,9 +183,10 @@ export const Preview = props => {
         sx={{
           fontWeight: 'bold',
           zoom: props.zoom,
-          '*': xray ? {
-            outline: t => `1px solid ${t.colors.outline}`
-          } : {}
+          ...gridStyles,
+          '*': {
+            outline: t => `1px solid ${t.colors.outline}`,
+          }
         }}>
         <LivePreview />
       </Box>
