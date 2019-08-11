@@ -5,6 +5,7 @@ import { Link } from 'gatsby'
 import { Global } from '@emotion/core'
 import { Helmet } from 'react-helmet'
 import get from 'lodash.get'
+import pkg from '../package.json'
 import { CodeProvider } from './context'
 import ModeSelector from './mode-selector'
 import ColorButton from './color-button'
@@ -30,7 +31,10 @@ const NavLink = ({ as: Tag = 'a', ...props }) =>
 
 const Layout = props => {
   const { colorMode, setColorMode, ...context } = useThemeUI()
-  let title = get(props, 'pageContext.frontmatter.title', 'Layouts')
+  let title = [
+    get(props, 'pageContext.frontmatter.title'),
+    'OK Layouts'
+  ].filter(Boolean).join(' | ')
 
   const cycleColorMode = e => {
     const i = colorModes.indexOf(colorMode)
@@ -52,6 +56,13 @@ const Layout = props => {
       />
       <Helmet htmlAttributes={{ lang: 'en-us' }}>
         <title>{title}</title>
+        <link rel='icon' href='/icon.png' />
+        <meta name='description' content={pkg.description} />
+        <meta name='twitter:site' content='jxnblk' />
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:description' content={pkg.description} />
+        <meta name='twitter:title' content={title} />
+        <meta name='twitter:image' content='/card.png' />
       </Helmet>
       <Styled.root
         sx={{
@@ -71,7 +82,7 @@ const Layout = props => {
               px: 3,
               py: 2,
             }}>
-            Layouts
+            OK Layouts
           </Link>
           <div sx={{ mx: 'auto' }} />
           <ModeSelector />
