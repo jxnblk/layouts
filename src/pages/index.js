@@ -81,7 +81,7 @@ export default props => {
         sx={{
           fontWeight: 'bold',
         }}>
-        Including syntax variations for:
+        Including code examples for
         {' '}
         <Styled.a href='https://rebassjs.org'>Rebass</Styled.a>,
         {' '}
