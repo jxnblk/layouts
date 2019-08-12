@@ -9,7 +9,7 @@ import TilesByWidth from '../examples/tiles-by-width'
 import TilesByColumns from '../examples/tiles-by-columns'
 import Container from '../examples/container'
 import Stack from '../examples/stack'
-import BottomFooter from '../examples/bottom-footer'
+import StickyFooter from '../examples/sticky-footer'
 import Masonry from '../examples/masonry'
 
 const Grid = ({
@@ -29,6 +29,7 @@ const Card = ({
   component,
   title,
   href,
+  zoom = 3/4,
   ...props
 }) =>
   <Link
@@ -52,7 +53,7 @@ const Card = ({
       }
     }}>
     <Preview
-      zoom={3/4}
+      zoom={zoom}
       component={component}
     />
     <div
@@ -76,14 +77,21 @@ export default props => {
         }}>
         Grab-and-go layouts for React
       </Styled.h1>
-      <Styled.p>
-        Click on a layout below to see a full-width editable example and to copy the code.
-        Use the controls above to switch syntax modes for
+      <Styled.p
+        sx={{
+          fontWeight: 'bold',
+        }}>
+        Including syntax variations for:
+        {' '}
         <Styled.a href='https://rebassjs.org'>Rebass</Styled.a>,
         {' '}
         <Styled.a href='https://theme-ui.com'>Theme UI</Styled.a>, or
         {' '}
         <Styled.a href='https://emotion.sh'>Emotion</Styled.a>.
+      </Styled.p>
+      <Styled.p>
+        Click on a layout below to see a full-width editable example and to copy the code.
+        Use the controls above to switch syntax modes.
       </Styled.p>
       <Grid
         sx={{
@@ -116,16 +124,21 @@ export default props => {
           href='/stack'
         />
         <Card
-          title='Bottom Footer'
-          component={BottomFooter}
-          href='/bottom-footer'
+          title='Sticky Footer'
+          component={StickyFooter}
+          href='/sticky-footer'
         />
         <Card
           title='Masonry'
           component={Masonry}
           href='/masonry'
+          zoom={1/4}
         />
       </Grid>
+      <Styled.p sx={{ mb: 5 }}>
+        Have an idea for another layout?
+          Open a PR on <Styled.a href='https://github.com/jxnblk/layouts'>GitHub</Styled.a> to contribute.
+      </Styled.p>
     </div>
   )
 }

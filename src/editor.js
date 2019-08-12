@@ -12,15 +12,25 @@ import { Styled } from 'theme-ui'
 import { Box, Flex } from 'rebass'
 import copy from 'copy-to-clipboard'
 import indent from 'indent-string'
+import get from 'lodash.get'
 import { useContext } from './context'
 
 // masonry layout card
 const Card = props => {
+  const { mode } = useContext()
+  const height = get(props, 'sx.height',
+    get(props, 'css.height', 128)
+  )
   const span = Math.ceil(
-    (props.sx.height + 16) /
+    (height + 16) /
     (32 + 16)
   )
   const gridRowEnd = `span ${span}`
+
+  if (mode === 'emotion') {
+    return <Box {...props} css={{ ...props.css, gridRowEnd }} />
+  }
+
   return (
     <Box {...props} sx={{ ...props.sx, gridRowEnd }} />
   )

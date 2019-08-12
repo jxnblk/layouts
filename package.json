@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "ok-layouts",
+  "name": "react-layouts",
   "description": "Grab-and-go layouts for React",
   "version": "0.1.0",
   "main": "index.js",
@@ -11,8 +11,8 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "serve": "gatsby serve",
-    "icon": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=OK&radius=999&size=32&fontSize=2&baseline=1' static/icon.png --width=32 --height=32 --scale-factor=1 ",
-    "card": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=OK&width=1024&height=512&fontSize=2&baseline=1' static/card.png --width=1024 --height=512"
+    "icon": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=R&radius=999&size=32&fontSize=2&baseline=1' static/icon.png --width=32 --height=32 --scale-factor=1 ",
+    "card": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=React%20Layouts&width=1024&height=512' static/card.png --width=1024 --height=512"
   },
   "dependencies": {
     "@jxnblk/react-live": "^2.1.2-2",

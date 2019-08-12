@@ -4,24 +4,40 @@ import merge from 'deepmerge'
 
 const theme = merge(preset, {
   useCustomProperties: true,
-  initialColorMode: 'light',
+  initialColorMode: 'dark',
   colors: {
-    accent: '#609',
-    gray: '#666',
-    muted: '#eee',
-    outline: 'rgba(0, 128, 255, 0.5)',
+    text: 'white',
+    background: 'black',
+    primary: 'cyan',
+    secondary: '#b0f',
+    accent: '#f0b',
+    muted: '#111116',
+    gray: '#999',
+    outline: 'rgba(0, 255, 255, 0.5)',
+    grid: 'rgba(0, 255, 255, 0.125)',
     modes: {
-      dark: {
-        text: 'white',
-        background: 'black',
-        primary: 'cyan',
-        secondary: 'yellow',
-        accent: 'magenta',
-        muted: '#111116',
-        gray: '#999',
-        outline: 'rgba(0, 255, 255, 0.5)',
-        grid: 'rgba(0, 255, 255, 0.125)',
+      lite: {
+        text: 'black',
+        background: 'white',
+        primary: '#06f',
+        secondary: '#a0c',
+        accent: '#f0a',
+        gray: '#444',
+        muted: '#f6f6ff',
+        outline: 'rgba(0, 102, 255, 0.5)',
+        grid: 'rgba(0, 102, 255, 0.125)',
       },
+      pink: {
+        text: 'hsl(350, 80%, 10%)',
+        background: 'hsl(350, 100%, 90%)',
+        primary: 'hsl(350, 100%, 50%)',
+        secondary: 'hsl(280, 100%, 50%)',
+        accent: 'hsl(280, 100%, 20%)',
+        muted: 'hsl(350, 100%, 88%)',
+        gray: 'hsl(350, 40%, 50%)',
+        outline: 'hsla(350, 100%, 50%, 0.5)',
+        grid: 'hsla(350, 100%, 50%, 0.25)',
+      }
     }
   },
   fontWeights: {

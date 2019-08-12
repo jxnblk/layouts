@@ -9,13 +9,14 @@ import pkg from '../package.json'
 import { CodeProvider } from './context'
 import ModeSelector from './mode-selector'
 import ColorButton from './color-button'
+import Pagination from './pagination'
 
 export { Editor, Preview } from './editor'
 
 const colorModes = [
-  'lite',
   'dark',
-  // 'pink',
+  'lite',
+  'pink',
 ]
 
 const NavLink = ({ as: Tag = 'a', ...props }) =>
@@ -33,7 +34,7 @@ const Layout = props => {
   const { colorMode, setColorMode, ...context } = useThemeUI()
   let title = [
     get(props, 'pageContext.frontmatter.title'),
-    'OK Layouts'
+    'React Layouts'
   ].filter(Boolean).join(' | ')
 
   const cycleColorMode = e => {
@@ -82,7 +83,7 @@ const Layout = props => {
               px: 3,
               py: 2,
             }}>
-            OK Layouts
+            React Layouts
           </Link>
           <div sx={{ mx: 'auto' }} />
           <ModeSelector />
@@ -95,6 +96,7 @@ const Layout = props => {
         </header>
         <main sx={{ px: 3, flex: 'auto' }}>
           {props.children}
+          <Pagination {...props} />
         </main>
         <footer
           sx={{
