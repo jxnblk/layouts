@@ -95,9 +95,10 @@ const renderCSSModules = (type, props, children) => {
   return rules
 }
 
-export const jsx = (type, props = {}, ...children) => {
+export const jsx = (type, props, ...children) => {
+  props = props || {}
   const { mode } = useContext()
-  const { depth = 0 } = props || {}
+  const { depth = 0 } = props
   const name = type.displayName || type
   const tag = elements[mode][name]
 
