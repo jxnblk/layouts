@@ -1,7 +1,7 @@
 
 # Grab-and-go layouts for React
 
-https://jxnblk.com/layouts
+https://react-layouts.netlify.com
 
 Includes code examples for [Rebass][], [Theme UI][], and [Emotion][].
 

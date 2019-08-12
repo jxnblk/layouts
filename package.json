@@ -8,9 +8,9 @@
   "license": "MIT",
   "scripts": {
     "start": "gatsby develop",
-    "build": "gatsby build --prefix-paths",
+    "build": "gatsby build",
     "clean": "gatsby clean",
-    "serve": "gatsby serve --prefix-paths",
+    "serve": "gatsby serve",
     "icon": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=R&radius=999&size=32&fontSize=2&baseline=1' static/icon.png --width=32 --height=32 --scale-factor=1 ",
     "card": "npx capture-website-cli 'https://contrast.now.sh/0ff/000?text=React%20Layouts&width=1024&height=512' static/card.png --width=1024 --height=512"
   },

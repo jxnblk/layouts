@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '/layouts',
+  // pathPrefix: '/layouts',
   plugins: [
     'gatsby-plugin-mdx',
     'gatsby-plugin-theme-ui',
