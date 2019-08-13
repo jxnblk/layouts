@@ -74,6 +74,10 @@ const Layout = props => {
         <header
           sx={{
             display: 'flex',
+            flexDirection: [
+              'column',
+              'row',
+            ],
             alignItems: 'center',
             minHeight: 48,
           }}>
@@ -85,14 +89,19 @@ const Layout = props => {
             }}>
             React Layouts
           </Link>
-          <div sx={{ mx: 'auto' }} />
-          <ModeSelector />
-          <div sx={{ mx: 2 }} />
-          <ColorButton
-            mode={colorMode}
-            onClick={cycleColorMode}
-          />
-          <div sx={{ mx: 2 }} />
+          <div sx={{
+            display: 'flex',
+            alignItems: 'center',
+            ml: 'auto',
+            mr: [ 'auto', 2 ],
+          }}>
+            <ModeSelector />
+            <div sx={{ mx: 1 }} />
+            <ColorButton
+              mode={colorMode}
+              onClick={cycleColorMode}
+            />
+          </div>
         </header>
         <main sx={{ px: 3, flex: 'auto' }}>
           {props.children}
