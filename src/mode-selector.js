@@ -36,6 +36,7 @@ export default props => {
           aria-checked={m === mode}
           sx={{
             appearance: 'none',
+            fontFamily: 'inherit',
             fontSize: 0,
             fontWeight: 'bold',
             m: 0,
