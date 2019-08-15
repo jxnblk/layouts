@@ -12,6 +12,7 @@ import Stack from '../examples/stack'
 import StickyFooter from '../examples/sticky-footer'
 import Masonry from '../examples/masonry'
 import HolyGrail from '../examples/holy-grail'
+import HolyGrailGrid from '../examples/holy-grail-grid'
 
 const Grid = ({
   width = 320,
@@ -139,6 +140,11 @@ export default props => {
           title='Holy Grail'
           component={HolyGrail}
           href='/holy-grail'
+        />
+        <Card
+          title='Holy Grail (Grid)'
+          component={HolyGrailGrid}
+          href='/holy-grail-grid'
         />
       </Grid>
       <Styled.p sx={{ mb: 5 }}>

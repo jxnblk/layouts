@@ -7,4 +7,5 @@ export default [
   { name: 'Sticky Footer', path: '/sticky-footer' },
   { name: 'Masonry', path: '/masonry' },
   { name: 'Holy Grail', path: '/holy-grail' },
+  { name: 'Holy Grail (Grid)', path: '/holy-grail-grid' },
 ]
