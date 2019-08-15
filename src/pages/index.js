@@ -139,7 +139,6 @@ export default props => {
           title='Holy Grail'
           component={HolyGrail}
           href='/holy-grail'
-          zoom={1/4}
         />
       </Grid>
       <Styled.p sx={{ mb: 5 }}>
