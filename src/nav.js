@@ -6,4 +6,5 @@ export default [
   { name: 'Stack', path: '/stack' },
   { name: 'Sticky Footer', path: '/sticky-footer' },
   { name: 'Masonry', path: '/masonry' },
+  { name: 'Holy Grail', path: '/holy-grail' },
 ]
