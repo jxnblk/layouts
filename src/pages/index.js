@@ -30,7 +30,7 @@ const Card = ({
   component,
   title,
   href,
-  zoom = 3/4,
+  zoom = 1/2,
   ...props
 }) =>
   <Link
