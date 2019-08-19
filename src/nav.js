@@ -8,4 +8,5 @@ export default [
   { name: 'Masonry', path: '/masonry' },
   { name: 'Holy Grail', path: '/holy-grail' },
   { name: 'Holy Grail (Grid)', path: '/holy-grail-grid' },
+  { name: 'Gallery (Grid)', path: '/gallery' },
 ]
