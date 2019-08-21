@@ -14,6 +14,7 @@ import Masonry from '../examples/masonry'
 import HolyGrail from '../examples/holy-grail'
 import HolyGrailGrid from '../examples/holy-grail-grid'
 import Gallery from '../examples/gallery'
+import CenteredGrid from '../examples/centered-grid'
 
 const Grid = ({
   width = 320,
@@ -151,6 +152,11 @@ export default props => {
           title='Gallery (Grid)'
           component={Gallery}
           href='/gallery'
+        />
+        <Card
+          title='Centered Grid'
+          component={CenteredGrid}
+          href='/centered-grid'
         />
       </Grid>
       <Styled.p sx={{ mb: 5 }}>
