@@ -19,8 +19,8 @@ export default () => (
         '2fr 1fr 1fr',
         'none'
       ],
-      gridGap: 20,
-      margin: 20
+      gridGap: 4,
+      margin: 4
     }}>
       <Box sx={{ flex: 1, gridArea: 'long-box' }}>Long Box</Box>
       <Box sx={{ flex: 1, gridArea: 'left-box' }}>Box Left</Box>
